@@ -1,0 +1,26 @@
+{
+  "name": "verso-esg-hub",
+  "version": "1.0.0",
+  "description": "This repository includes test automation scripts with playwright typescrit for ESG HUB applicaton and test artifacts including Test case documentation, Defect Reports and Defect Tracker",
+  "main": "index.js",
+  "scripts": {
+    "test:e2e": "npx bddgen && npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajithcoder/verso-esg-hub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ajithcoder/verso-esg-hub/issues"
+  },
+  "homepage": "https://github.com/ajithcoder/verso-esg-hub#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@types/node": "^22.13.9",
+    "playwright-bdd": "^8.2.1"
+  }
+}

@@ -1,6 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
-import * as data from "../config/credentials.json";
 import * as fs from 'fs';
+import ENV from "../utils/env";
 
 export class LoginPage {
   readonly page: Page;
@@ -18,19 +18,21 @@ export class LoginPage {
   }
 
   async launchApplication() {
-    await this.page.goto("/");
+    await this.page.goto('/login');
+    await this.page.waitForLoadState("networkidle");
     await expect(this.page).toHaveTitle("VERSO | ESG hub");
-    await expect(this.page.locator('h1:has-text("Sign in")')).toBeVisible();
+    await expect(this.usernameField).toBeVisible();
   }
 
-  async enterValidCredentials() {
-    await this.usernameField.fill(data.validUsername);
-    await this.passwordField.fill(data.validPassword);
+  // retrieve the credentials from the .env file using ENV class and enter them in the respective fields.
+  async enterValidCredentials(username: string, password: string) {
+    await this.usernameField.fill(username);
+    await this.passwordField.fill(password);
   }
 
-  async enterInvalidCredentials() {
-    await this.usernameField.fill(data.invalidUsername);
-    await this.passwordField.fill(data.invalidPassword);
+  async enterInvalidCredentials(invalidUsername: string, invalidPassword: string) {
+    await this.usernameField.fill(invalidUsername);
+    await this.passwordField.fill(invalidPassword);
   }
 
   async validateIncorrectCredentialsError() {

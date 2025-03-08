@@ -1,3 +1,4 @@
+import ENV from "../../utils/env";
 import { Given, When, Then } from "../fixtures/fixtures";
 
 Given(
@@ -10,7 +11,10 @@ Given(
 When(
   "the user enters valid username and password in the login form",
   async ({ loginPage }) => {
-    await loginPage.enterValidCredentials();
+    await loginPage.enterValidCredentials(
+      ENV.VALID_USERNAME,
+      ENV.VALID_PASSWORD
+    );
   }
 );
 
@@ -29,13 +33,16 @@ Then(
 When(
   "the user enters invalid username and password in the login form",
   async ({ loginPage }) => {
-    await loginPage.enterInvalidCredentials();
+    await loginPage.enterInvalidCredentials(
+      ENV.INVALID_USERNAME,
+      ENV.INVALID_PASSWORD
+    );
   }
 );
 
 Then(
   "the user login should fail and should see an error message",
-  async ({loginPage}) => {
+  async ({ loginPage }) => {
     await loginPage.validateIncorrectCredentialsError();
   }
 );

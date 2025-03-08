@@ -12,3 +12,5 @@ Feature: User Authentication Tests
     When the user enters invalid username and password in the login form
     And the user clicks the Sign in button
     Then the user login should fail and should see an error message
+
+  #TODO : Add test Scenario on either one of the field blank case to monitor the behavior

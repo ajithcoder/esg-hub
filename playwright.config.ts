@@ -1,18 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
-import { defineBddConfig, defineBddProject } from "playwright-bdd";
+import { defineBddProject } from "playwright-bdd";
+import dotenv from "dotenv";
 
-// // Define BDD configuration
-// const bddTestDir = defineBddConfig({
-//   paths: ["./tests/features/esg_hub_tests/**/*.feature"],
-//   require: ["./tests/fixtures/fixtures.ts", "./tests/steps/**/*.ts"],
-//   outputDir: "./bddtests/esg_hub_tests",
-// });
-
-/**
- * See https://playwright.dev/docs/test-configuration.
- */
+// Load environment variables
+dotenv.config();
 export default defineConfig({
-  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -26,7 +18,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "https://ajith.verso.de/admin/#/login,",
+    baseURL: 'https://ajith.verso.de/admin/#',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
@@ -52,7 +44,7 @@ export default defineConfig({
     {
       ...defineBddProject({
         name: "ESG-Hub_Tests",
-        features: "./bddtests/tests/features/esg_hub_tests/**/*.feature", // Adjust the path as needed
+        features: "./bddtests/tests/features/esg_hub_tests/**/*.feature",
         steps: [
           "./bddtests/tests/steps/*.ts",
           "./bddtests/tests/fixtures/fixtures.ts",

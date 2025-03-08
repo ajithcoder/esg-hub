@@ -18,7 +18,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://ajith.verso.de/admin/#',
+    baseURL: process.env.BASE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
@@ -44,10 +44,10 @@ export default defineConfig({
     {
       ...defineBddProject({
         name: "ESG-Hub_Tests",
-        features: "./bddtests/tests/features/esg_hub_tests/**/*.feature",
+        features: "./tests/features/esg_hub_tests/**/*.feature",
         steps: [
-          "./bddtests/tests/steps/*.ts",
-          "./bddtests/tests/fixtures/fixtures.ts",
+          "./tests/steps/*.ts",
+          "./tests/fixtures/fixtures.ts",
         ],
         outputDir: "./bddtests/esg_hub_tests",
         matchKeywords: true,

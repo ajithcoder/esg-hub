@@ -12,8 +12,8 @@ When(
   "the user enters valid username and password in the login form",
   async ({ loginPage }) => {
     await loginPage.enterValidCredentials(
-      ENV.VALID_USERNAME,
-      ENV.VALID_PASSWORD
+      ENV.VALID_USERNAME || '',
+      ENV.VALID_PASSWORD || ''
     );
   }
 );
@@ -34,8 +34,8 @@ When(
   "the user enters invalid username and password in the login form",
   async ({ loginPage }) => {
     await loginPage.enterInvalidCredentials(
-      ENV.INVALID_USERNAME,
-      ENV.INVALID_PASSWORD
+      ENV.INVALID_USERNAME || '',
+      ENV.INVALID_PASSWORD || ''
     );
   }
 );

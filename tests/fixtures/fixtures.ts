@@ -1,14 +1,14 @@
 
 import { test as baseTest, createBdd } from 'playwright-bdd';
 import { DashboardPage } from '../../pages/dashboardPage';
-import { TopicDetailPage } from '../../pages/topicDetailPage';
+import { TopicDetailViewPage } from '../../pages/topicDetailViewPage';
 import { LoginPage } from '../../pages/loginPage';
 import { TaskViewPage } from '../../pages/taskViewPage';
 import { TopicsOverviewPage } from '../../pages/topicsOverviewPage';
 
 type Pages = {
   dashboardPage: DashboardPage;
-  topicDetailPage: TopicDetailPage;
+  topicDetailPage: TopicDetailViewPage;
   loginPage: LoginPage;
   taskViewPage: TaskViewPage;
   topicsOverviewPage: TopicsOverviewPage;
@@ -20,7 +20,7 @@ export const test = baseTest.extend<Pages>({
     await use(dashboardPage);
   },
   topicDetailPage: async ({ page }, use) => {
-    const topicDetailPage = new TopicDetailPage(page);
+    const topicDetailPage = new TopicDetailViewPage(page);
     await use(topicDetailPage);
   },
   loginPage: async ({ page }, use) => {

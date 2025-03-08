@@ -1,6 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
 import * as fs from 'fs';
-import ENV from "../utils/env";
 
 export class LoginPage {
   readonly page: Page;
@@ -19,7 +18,7 @@ export class LoginPage {
 
   async launchApplication() {
     await this.page.goto('/login');
-    await this.page.waitForLoadState("networkidle");
+    await this.page.waitForLoadState("networkidle"); //Added due to the lazy loading of the page
     await expect(this.page).toHaveTitle("VERSO | ESG hub");
     await expect(this.usernameField).toBeVisible();
   }

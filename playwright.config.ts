@@ -1,11 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
-import { defineBddConfig } from "playwright-bdd";
+import { defineBddConfig, defineBddProject } from "playwright-bdd";
 
 // Define BDD configuration
 const bddTestDir = defineBddConfig({
-  paths: ["./tests/features/**/*.feature"],
+  paths: ["./tests/features/esg_hub_tests/**/*.feature"],
   require: ["./tests/fixtures/fixtures.ts", "./tests/steps/**/*.ts"],
-  outputDir: "./bddtests",
+  outputDir: "./bddtests/esg_hub_tests",
 });
 
 /**
@@ -26,7 +26,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "https://ajith.verso.de/admin,",
+    baseURL: "https://ajith.verso.de/admin/#/login,",
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "retain-on-failure",
@@ -39,18 +39,24 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "setup", // to create the session and set cookie preferences
-      testMatch: "**/setup.ts", // Matches generated setup spec
-      use: { ...devices["Desktop Chrome"], channel: "chromium" },
+      ...defineBddProject({
+        name: 'setup',
+        features: './tests/features/setup/user-authentication-tests.feature',
+        steps: ['./tests/steps/*.ts', './tests/fixtures/fixtures.ts'],
+        outputDir: './bddtests/setup',
+        matchKeywords: true,
+      }),
+      fullyParallel: true,
+      use: { ...devices['Desktop Chrome'], channel: 'chromium' },
     },
     {
-      name: "Mobile Chrome", // mobile view port
+      name: "ESG-Hub_Tests",
       testDir: bddTestDir,
       dependencies: ["setup"],
       use: {
         ...devices["Desktop Chrome"],
         channel: "chromium",
-        storageState: ".cookiesStorage/state.json",
+        storageState: ".auth/state.json",
       },
     },
   ],

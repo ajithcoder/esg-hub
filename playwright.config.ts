@@ -1,18 +1,18 @@
 import { defineConfig, devices } from "@playwright/test";
 import { defineBddConfig, defineBddProject } from "playwright-bdd";
 
-// Define BDD configuration
-const bddTestDir = defineBddConfig({
-  paths: ["./tests/features/esg_hub_tests/**/*.feature"],
-  require: ["./tests/fixtures/fixtures.ts", "./tests/steps/**/*.ts"],
-  outputDir: "./bddtests/esg_hub_tests",
-});
+// // Define BDD configuration
+// const bddTestDir = defineBddConfig({
+//   paths: ["./tests/features/esg_hub_tests/**/*.feature"],
+//   require: ["./tests/fixtures/fixtures.ts", "./tests/steps/**/*.ts"],
+//   outputDir: "./bddtests/esg_hub_tests",
+// });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: "./tests",
+  
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -40,19 +40,28 @@ export default defineConfig({
   projects: [
     {
       ...defineBddProject({
-        name: 'setup',
-        features: './tests/features/setup/user-authentication-tests.feature',
-        steps: ['./tests/steps/*.ts', './tests/fixtures/fixtures.ts'],
-        outputDir: './bddtests/setup',
+        name: "setup",
+        features: "./tests/features/setup/user-authentication-tests.feature",
+        steps: ["./tests/steps/*.ts", "./tests/fixtures/fixtures.ts"],
+        outputDir: "./bddtests/setup",
         matchKeywords: true,
       }),
       fullyParallel: true,
-      use: { ...devices['Desktop Chrome'], channel: 'chromium' },
+      use: { ...devices["Desktop Chrome"], channel: "chromium" },
     },
     {
-      name: "ESG-Hub_Tests",
-      testDir: bddTestDir,
+      ...defineBddProject({
+        name: "ESG-Hub_Tests",
+        features: "./bddtests/tests/features/esg_hub_tests/**/*.feature", // Adjust the path as needed
+        steps: [
+          "./bddtests/tests/steps/*.ts",
+          "./bddtests/tests/fixtures/fixtures.ts",
+        ],
+        outputDir: "./bddtests/esg_hub_tests",
+        matchKeywords: true,
+      }),
       dependencies: ["setup"],
+      fullyParallel: true,
       use: {
         ...devices["Desktop Chrome"],
         channel: "chromium",

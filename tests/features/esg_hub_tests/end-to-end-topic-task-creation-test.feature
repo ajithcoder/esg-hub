@@ -25,7 +25,7 @@ Feature: End-to-End Task Creation Flow
     Examples:
       | Title      | Description                  | Assignees         | Deadline     | Status      |
       | Alpha Task | Complete all the alpha tasks | Verso Maintenance | 15 MÄRZ 2025 | Open        |
-      | Beta Task  | Complete all the beta tasks  | Verso Maintenance | 15 FEB. 2026 | In progress |
+      | Beta Task  | Complete all the beta tasks  | Verso Maintenance | 15 FEB. 2026 | In Progress |
       | Gamma Task | Complete all the gamma tasks | Verso Maintenance | 25 DEZ. 2025 | Done        |
 
   Scenario: Verify newly created Task in Dashboard    # this Scenario intends to cover the navigation from Tasks tab to dashboard too.

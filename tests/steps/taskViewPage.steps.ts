@@ -1,4 +1,4 @@
-import { Given, When, Then } from "../fixtures/fixtures";
+import { Given, When, Then, expect } from "../fixtures/fixtures";
 
 When(
   "fills the task form with:",
@@ -35,5 +35,42 @@ When(
   async ({ dashboardPage, taskViewPage }) => {
     await dashboardPage.verifyNavigationBarVisibility();
     await taskViewPage.clickDashboardModule();
+  }
+);
+
+When(
+  "the user clicks on the task {string}",
+  async ({ taskViewPage }, taskName: string) => {
+    await taskViewPage.openTask(taskName);
+  }
+);
+
+When("the user clicks on the edit button", async ({ taskViewPage }) => {
+  await taskViewPage.clickEditButton();
+});
+
+When(
+  "the user updates the status of task to {string}",
+  async ({ taskViewPage }, status: string) => {
+    await taskViewPage.selectStatus(status);
+  }
+);
+
+Then(
+  "the status is updated to {string}",
+  async ({ taskViewPage }, status: string) => {
+    await taskViewPage.validateStatus(status);
+  }
+);
+
+When("the user clicks on the delete button", async ({ taskViewPage }) => {
+  await taskViewPage.clickDeleteButton();
+});
+
+Then(
+  "the task {string} is not found on the Tasks section",
+  async ({ taskViewPage }, taskName: string) => {
+    const isTaskVisible = await taskViewPage.validateTaskVisibility(taskName);
+    expect(isTaskVisible).toBeFalsy();
   }
 );

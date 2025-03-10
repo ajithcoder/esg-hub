@@ -11,7 +11,7 @@ Given(
   "the user is on the Test Topic details page",
   async ({ topicDetailPage }) => {
     await topicDetailPage.routeToPage();
-    await topicDetailPage.verifyAdminNavbarCurrentPage();
+    await topicDetailPage.verifyTopicDetailViewPageAccessibility();
   }
 );
 

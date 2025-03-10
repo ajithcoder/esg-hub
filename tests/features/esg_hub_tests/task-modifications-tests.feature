@@ -1,19 +1,29 @@
+@mode:parallel
 Feature: Tasks modification tests
-#   Scenario: Edit Task via UI
-#     Given the task "Complete UI Testing" exists in the Task tab
-#     When the user clicks on the task "Complete UI Testing"
-#     And updates the due date to "2025-01-15"
-#     And clicks the "Save" button
-#     Then the task "Complete UI Testing" should show the updated due date in:
-#       | Location  |
-#       | Task tab  |
-#       | Dashboard |
-#   Scenario: Delete Task via UI
-#     Given the task "Complete UI Testing" exists in the Task tab
-#     When the user clicks on the task "Complete UI Testing"
-#     And clicks the "Delete" button
-#     And confirms the deletion
-#     Then the task "Complete UI Testing" should no longer appear in:
-#       | Location  |
-#       | Task tab  |
-#       | Dashboard |
+
+  Scenario: Editing the tasks created
+    Given the user is logged in and reached the ESG Hub dashboard
+    When the user opens "Alpha Task" from the "My VERSO Tasks" table
+    When the user opens the side drawer
+    And selects the "Task" tab
+    Then a task "Alpha Task" exists in the Task tab
+    When the user clicks on the task "Alpha Task"
+    And the user clicks on the edit button
+    And the user updates the status of task to "In Progress"
+    And user clicks the Save button and notification "Task updated" displayed
+    And the user selects the Dashboard module from the navigation bar
+    Then the status of task "Alpha Task" is updated to "In progress"
+
+  Scenario: Deleting the tasks created
+    Given the user is logged in and reached the ESG Hub dashboard
+    When the user opens "Beta Task" from the "My VERSO Tasks" table
+    When the user opens the side drawer
+    And selects the "Task" tab
+    Then a task "Beta Task" exists in the Task tab
+    When the user clicks on the task "Beta Task"
+    And the user clicks on the delete button
+    Then the task "Beta Task" is not found on the Tasks section
+    When the user selects the Dashboard module from the navigation bar
+    Then the user does not finds "Beta Task" on the tab "My VERSO Tasks"
+    And the user does not finds "Beta Task" on the tab "Tasks created by me"
+

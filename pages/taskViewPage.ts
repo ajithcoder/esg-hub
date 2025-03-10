@@ -69,6 +69,24 @@ export class TaskViewPage {
     await expect(this.titleSelector).toBeVisible();
   }
 
+  async openTask(taskName: string){
+    const taskExpansionPanel = this.page.locator(`mat-expansion-panel .mat-expansion-panel-header-title:has-text("${taskName}")`);
+    await expect(taskExpansionPanel).toBeVisible(); 
+    await taskExpansionPanel.click();
+    await expect(this.page.locator('button:has(mat-icon:text("edit"))').filter({visible: true})).toBeVisible(); // used new filter option available from playwright 1.51
+  }
+
+  async clickEditButton(){
+    const editButton = this.page.locator('button:has(mat-icon:text("edit"))').filter({visible: true});
+    await editButton.click();
+    await expect(this.openCalenderButton).toBeVisible();
+  }
+
+  async clickDeleteButton(){
+    const deleteButton = this.page.locator('button:has(mat-icon:text("delete"))').filter({visible: true});
+    await deleteButton.click();
+  }
+
   async fillTaskForm(taskDetails: { [key: string]: string }) {
     await this.titleSelector.fill(taskDetails["Title"]);
     await this.descriptionSelector.fill(taskDetails["Description"]);
@@ -89,8 +107,17 @@ export class TaskViewPage {
 
   async selectStatus(status: string) {
     const statusOptions = this.page.getByRole("option", { name: status });
+    const chosenStatus = this.page.locator(`admin-task-related .mat-select-min-line`).filter({visible: true});
     await this.statusSelector.click();
+    await expect(statusOptions).toBeVisible();
     await statusOptions.click();
+    await progressBarHandler(this.page);
+    await expect(chosenStatus).toHaveText(status);
+  }
+
+  async validateStatus(expectedStatus: string){
+    const status = this.page.locator(`admin-task-related .mat-select-min-line`).filter({visible: true})
+    await expect(status).toHaveText(expectedStatus);
   }
 
   async selectDate(dateString: string) {

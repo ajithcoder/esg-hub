@@ -56,7 +56,7 @@ export class TopicDetailViewPage {
     await expect(this.topicDetailViewTitleInput).toHaveValue(topicName);
   }
 
-  async verifyAdminNavbarCurrentPage() {
+  async verifyTopicDetailViewPageAccessibility() {
     await expect(this.adminNavbarCurrentPage).toHaveText("Topic Detail View");
   }
 

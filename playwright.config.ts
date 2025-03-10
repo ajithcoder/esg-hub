@@ -43,16 +43,29 @@ export default defineConfig({
     },
     {
       ...defineBddProject({
-        name: "ESG-Hub_Tests",
-        features: "./tests/features/esg_hub_tests/**/*.feature",
-        steps: [
-          "./tests/steps/*.ts",
-          "./tests/fixtures/fixtures.ts",
-        ],
-        outputDir: "./bddtests/esg_hub_tests",
+        name: "ESG-Hub_E2E_Tests",
+        features: "./tests/features/esg_hub_tests/end-to-end-topic-task-creation-test.feature",
+        steps: ["./tests/steps/*.ts", "./tests/fixtures/fixtures.ts"],
+        outputDir: "./bddtests/esg_hub_e2e",
         matchKeywords: true,
       }),
       dependencies: ["setup"],
+      fullyParallel: true,
+      use: {
+        ...devices["Desktop Chrome"],
+        channel: "chromium",
+        storageState: ".auth/state.json",
+      },
+    },
+    {
+      ...defineBddProject({
+        name: "ESG-Hub_Task_Modifications_Test",
+        features: "./tests/features/esg_hub_tests/task-modifications-tests.feature",
+        steps: ["./tests/steps/*.ts", "./tests/fixtures/fixtures.ts"],
+        outputDir: "./bddtests/esg_hub_task_mod",
+        matchKeywords: true,
+      }),
+      dependencies: ["setup", "ESG-Hub_E2E_Tests"],
       fullyParallel: true,
       use: {
         ...devices["Desktop Chrome"],

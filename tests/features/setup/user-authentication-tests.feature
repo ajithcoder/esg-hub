@@ -1,3 +1,4 @@
+@mode:parallel
 Feature: User Authentication Tests
 
   Background:
@@ -14,3 +15,4 @@ Feature: User Authentication Tests
     Then the user login should fail and should see an error message
 
   #TODO : Add test Scenario on either one of the field blank case to monitor the behavior
+  #TODO: Log out scenario

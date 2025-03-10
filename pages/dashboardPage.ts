@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import ENV from "../utils/env.ts";
 import { progressBarHandler } from "../utils/progressBarHandler.ts";
+import { TopicDetailViewPage } from "./topicDetailViewPage.ts";
 
 export class DashboardPage {
   readonly page: Page;
@@ -9,9 +10,11 @@ export class DashboardPage {
   readonly collapseNavigationBarButton: Locator;
   readonly expandNavigationBarButton: Locator;
   readonly topicsModule: Locator;
+  readonly topicDetailViewPage: TopicDetailViewPage;
 
   constructor(page: Page) {
     this.page = page;
+    this.topicDetailViewPage = new TopicDetailViewPage(page);
     this.dashboardpageTitle = this.page.locator("admin-dashboard .verso-h1");
     this.route = ENV.BASE_URL + "/dashboard/tasks-all";
     this.collapseNavigationBarButton = this.page.locator(
@@ -32,6 +35,7 @@ export class DashboardPage {
   }
 
   async verifyDashboardPage() {
+    await progressBarHandler(this.page);
     await expect(this.dashboardpageTitle).toHaveText("Welcome back to VERSO");
   }
 
@@ -61,5 +65,20 @@ export class DashboardPage {
   async validateTaskVisibility(taskTitle: string) {
     const taskName = this.page.getByRole("cell", { name: taskTitle });
     await expect(taskName).toBeVisible();
+  }
+
+  async openTaskFromTable(taskName: string) {
+    const taskLocator = this.page.getByRole("cell", { name: taskName }).locator(`.title`);
+    await this.validateTaskVisibility(taskName);
+    await taskLocator.click();
+    await progressBarHandler(this.page);
+    await this.topicDetailViewPage.verifyTopicDetailViewPageAccessibility();
+  }
+
+  async validateTaskStatusFromTable(taskName: string, expectedStatus: string) {
+    const rowLocator = this.page.getByRole('row').filter({has: this.page.getByRole('cell',{name: taskName})});
+    const statusLocator = rowLocator.getByRole('cell', {name: expectedStatus});
+    await progressBarHandler(this.page);
+    await expect(statusLocator).toBeVisible();
   }
 }

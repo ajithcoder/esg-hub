@@ -46,7 +46,7 @@ export class TopicDetailViewPage {
   async routeToPage() {
     if (this.page.url() !== this.route) {
       await this.page.goto(this.route);
-      await this.page.waitForLoadState("networkidle");
+      await this.page.waitForLoadState("domcontentloaded");
       await this.page.waitForURL(this.route);
     }
   }

@@ -16,4 +16,10 @@ When(
   }
 );
 
-
+Then(
+  "the user finds {string} on the tab {string}",
+  async ({ dashboardPage }, taskChosen: string, tabChosen: string) => {
+    await dashboardPage.selectTabOnDashboard(tabChosen);
+    await dashboardPage.validateTaskVisibility(taskChosen);
+  }
+);

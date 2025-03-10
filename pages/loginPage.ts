@@ -1,5 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
-import * as fs from 'fs';
+import * as fs from "fs";
+import { notificationMessageValidator } from "../utils/notificationMessageValidator";
 
 export class LoginPage {
   readonly page: Page;
@@ -13,11 +14,13 @@ export class LoginPage {
     this.usernameField = this.page.locator('mat-form-field [id="mat-input-0"]');
     this.passwordField = this.page.locator('mat-form-field [id="mat-input-1"]');
     this.signInButton = this.page.locator("button:has-text('Sign in')");
-    this.incorrectCredentialsNotificationContent = this.page.locator("admin-notifications .notification-text");
+    this.incorrectCredentialsNotificationContent = this.page.locator(
+      "admin-notifications .notification-text"
+    );
   }
 
   async launchApplication() {
-    await this.page.goto('/login');
+    await this.page.goto("/login");
     await this.page.waitForLoadState("networkidle"); //Added due to the lazy loading of the page
     await expect(this.page).toHaveTitle("VERSO | ESG hub");
     await expect(this.usernameField).toBeVisible();
@@ -29,24 +32,26 @@ export class LoginPage {
     await this.passwordField.fill(password);
   }
 
-  async enterInvalidCredentials(invalidUsername: string, invalidPassword: string) {
+  async enterInvalidCredentials(
+    invalidUsername: string,
+    invalidPassword: string
+  ) {
     await this.usernameField.fill(invalidUsername);
     await this.passwordField.fill(invalidPassword);
   }
 
   async validateIncorrectCredentialsError() {
-    await expect(this.incorrectCredentialsNotificationContent).toHaveText(" Invalid credentials. ")
+    await notificationMessageValidator(' Invalid credentials. ', this.page)
   }
 
   async clickSignInButton() {
     await this.signInButton.click();
+    await expect(this.signInButton).not.toBeVisible(); // to make sure user moved from logged in page.
   }
 
-//  Preserve the session state by storing the cookies in a file. This file can be used to restore the session state in subsequent test runs.
+  //  Preserve the session state by storing the cookies in a file. This file can be used to restore the session state in subsequent test runs.
   async preserveSessionState() {
     const cookiesStorage = ".auth/state.json";
-    if(!fs.existsSync(cookiesStorage)){
-        await this.page.context().storageState({ path: cookiesStorage });
-    }
+    await this.page.context().storageState({ path: cookiesStorage });
   }
 }

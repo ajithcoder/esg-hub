@@ -48,4 +48,18 @@ export class DashboardPage {
     await progressBarHandler(this.page);
     expect(this.page.url()).toContain("/topics/overview");
   }
+
+  async selectTabOnDashboard(tabName: string) {
+    const chosenTab = this.page.locator(`.mat-tab-link:has-text("${tabName}")`);
+    const chosenTabSelected = this.page.locator(
+      `.mat-tab-label-active:has-text("${tabName}")`
+    );
+    await chosenTab.click();
+    await expect(chosenTabSelected).toBeVisible();
+  }
+
+  async validateTaskVisibility(taskTitle: string) {
+    const taskName = this.page.getByRole("cell", { name: taskTitle });
+    await expect(taskName).toBeVisible();
+  }
 }

@@ -6,55 +6,33 @@ Feature: End-to-End Task Creation Flow
     When the user selects the Topics module from the navigation bar
     And the user selects "Test Topic" from the list
     Then the "Test topic" details page should open
-    
-#   Scenario: Open Task Tab via Side Drawer
-#     Given the user is on the Test Topic details page
-#     When they click the side drawer (top right)
-#     And select the "Task" tab
-#     Then the Task tab should display:
-#       | Element             |
-#       | "+" button          |
-#       | Existing tasks list |
-#   Scenario: Create Task with Valid Data
-#     Given the user is on the Task tab
-#     When they click the "+" button
-#     And fill out the task form with:
-#       | Field       | Value               |
-#       | Title       | Complete UI Testing |
-#       | Description | Test all task flows |
-#       | Due Date    |          2024-12-31 |
-#     And click the "Save" button
-#     Then the task "Complete UI Testing" should appear in the Task tab
-#   Scenario: Create Task with Invalid Data
-#     Given the user is on the Task tab
-#     When they click the "+" button
-#     And fill out the task form with:
-#       | Field       | Value               |
-#       | Title       | Complete UI Testing |
-#       | Description | Test all task flows |
-#       | Due Date    |          2024-12-31 |
-#     And click the "Save" button
-#     Then the task "Complete UI Testing" should appear in the Task tab
-#   Scenario: Verify Task in Dashboard
-#     Given a task "Complete UI Testing" exists in the Task tab
-#     When the user navigates to the Dashboard
-#     And selects the "Task created by me" tab
-#     Then the task "Complete UI Testing" should be listed
-#   Scenario: Edit Task via UI
-#     Given the task "Complete UI Testing" exists in the Task tab
-#     When the user clicks on the task "Complete UI Testing"
-#     And updates the due date to "2025-01-15"
-#     And clicks the "Save" button
-#     Then the task "Complete UI Testing" should show the updated due date in:
-#       | Location  |
-#       | Task tab  |
-#       | Dashboard |
-#   Scenario: Delete Task via UI
-#     Given the task "Complete UI Testing" exists in the Task tab
-#     When the user clicks on the task "Complete UI Testing"
-#     And clicks the "Delete" button
-#     And confirms the deletion
-#     Then the task "Complete UI Testing" should no longer appear in:
-#       | Location  |
-#       | Task tab  |
-#       | Dashboard |
+
+  Scenario Outline: Create a new task via the Task tab
+    Given the user is on the Test Topic details page
+    When the user opens the side drawer
+    And selects the "Task" tab
+    Then the Task tab should display an add button
+    When the user clicks the add button
+    And fills the task form with:
+      | Title       | <Title>       |
+      | Description | <Description> |
+      | Assignees   | <Assignees>   |
+      | Deadline    | <Deadline>    |
+      | Status      | <Status>      |
+    And user clicks the Save button and notification "Task Created Successfully" displayed
+    Then the task "<Title>" should be created successfully
+
+    Examples:
+      | Title      | Description                  | Assignees         | Deadline     | Status      |
+      | Alpha Task | Complete all the alpha tasks | Verso Maintenance | 15 MÄRZ 2025 | Open        |
+      | Beta Task  | Complete all the beta tasks  | Verso Maintenance | 15 FEB. 2026 | In progress |
+      | Gamma Task | Complete all the gamma tasks | Verso Maintenance | 25 DEZ. 2025 | Done        |
+
+  Scenario: Verify newly created Task in Dashboard    # this Scenario intends to cover the navigation from Tasks tab to dashboard too.
+    Given the user is on the Test Topic details page
+    When the user opens the side drawer
+    And selects the "Task" tab
+    Then a task "Alpha Task" exists in the Task tab
+    When the user selects the Dashboard module from the navigation bar
+    Then the user finds "Alpha Task" on the tab "My VERSO Tasks"
+    And the user finds "Alpha Task" on the tab "Tasks created by me"

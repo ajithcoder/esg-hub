@@ -13,7 +13,7 @@ export class LoginPage {
     this.page = page;
     this.usernameField = this.page.locator('mat-form-field [id="mat-input-0"]');
     this.passwordField = this.page.locator('mat-form-field [id="mat-input-1"]');
-    this.signInButton = this.page.locator("button:has-text('Sign in')");
+    this.signInButton = this.page.locator(`button:has-text("Sign in")`);
     this.incorrectCredentialsNotificationContent = this.page.locator(
       "admin-notifications .notification-text"
     );
@@ -21,7 +21,7 @@ export class LoginPage {
 
   async launchApplication() {
     await this.page.goto("/login");
-    await this.page.waitForLoadState("networkidle"); //Added due to the lazy loading of the page
+    await this.page.waitForLoadState("domcontentloaded"); //Added due to the lazy loading of the page
     await expect(this.page).toHaveTitle("VERSO | ESG hub");
     await expect(this.usernameField).toBeVisible();
   }

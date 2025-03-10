@@ -30,7 +30,6 @@ export class DashboardPage {
     if (this.page.url() !== this.route) {
       await this.page.goto(this.route);
       await this.page.waitForLoadState("domcontentloaded");
-
       await this.page.waitForURL(this.route);
     }
   }
@@ -38,7 +37,6 @@ export class DashboardPage {
   async verifyDashboardPage() {
     await progressBarHandler(this.page);
     await expect(this.dashboardpageTitle).toHaveText("Welcome back to VERSO", { timeout: 5000 });
-
   }
 
   async verifyNavigationBarVisibility() {
@@ -50,7 +48,6 @@ export class DashboardPage {
 
   async clickTopicsModule() {
     await expect(this.topicsModule).toBeVisible({ timeout: 5000 });
-
     await this.topicsModule.click();
     await progressBarHandler(this.page);
     expect(this.page.url()).toContain("/topics/overview");
@@ -63,13 +60,11 @@ export class DashboardPage {
     );
     await chosenTab.click();
     await expect(chosenTabSelected).toBeVisible({ timeout: 5000 });
-
   }
 
-  async validateTaskVisibility(taskTitle: string) {
+  async validateTaskVisibility(taskTitle: string): Promise<boolean> {
     const taskName = this.page.getByRole("cell", { name: taskTitle });
-    await expect(taskName).toBeVisible({ timeout: 5000 });
-
+    return await taskName.isVisible();
   }
 
   async openTaskFromTable(taskName: string) {
@@ -85,6 +80,5 @@ export class DashboardPage {
     const statusLocator = rowLocator.getByRole('cell', {name: expectedStatus});
     await progressBarHandler(this.page);
     await expect(statusLocator).toBeVisible({ timeout: 5000 });
-
   }
 }

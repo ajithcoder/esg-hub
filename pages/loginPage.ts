@@ -21,7 +21,7 @@ export class LoginPage {
 
   async launchApplication() {
     await this.page.goto("/login");
-    await this.page.waitForLoadState("domcontentloaded"); //Added due to the lazy loading of the page
+    await this.page.waitForLoadState("load"); //Added due to the lazy loading of the page
     await expect(this.page).toHaveTitle("VERSO | ESG hub");
     await expect(this.usernameField).toBeVisible();
   }

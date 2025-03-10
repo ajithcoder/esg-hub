@@ -42,8 +42,8 @@ When(
 Then(
   "the user does not finds {string} on the tab {string}",
   async ({ dashboardPage }, taskName: string, tabChosen: string) => {
-    const isTaskVisible = await dashboardPage.validateTaskVisibility(taskName);
     await dashboardPage.selectTabOnDashboard(tabChosen);
+    const isTaskVisible = await dashboardPage.validateTaskVisibility(taskName);
     expect(isTaskVisible).toBeFalsy();
   }
 );

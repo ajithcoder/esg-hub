@@ -48,6 +48,7 @@ export class DashboardPage {
 
   async clickTopicsModule() {
     await expect(this.topicsModule).toBeVisible({ timeout: 5000 });
+
     await this.topicsModule.click();
     await progressBarHandler(this.page);
     expect(this.page.url()).toContain("/topics/overview");
@@ -60,11 +61,13 @@ export class DashboardPage {
     );
     await chosenTab.click();
     await expect(chosenTabSelected).toBeVisible({ timeout: 5000 });
+
   }
 
-  async validateTaskVisibility(taskTitle: string): Promise<boolean> {
+  async validateTaskVisibility(taskTitle: string) {
     const taskName = this.page.getByRole("cell", { name: taskTitle });
-    return await taskName.isVisible();
+    await expect(taskName).toBeVisible();
+
   }
 
   async openTaskFromTable(taskName: string) {
@@ -80,5 +83,6 @@ export class DashboardPage {
     const statusLocator = rowLocator.getByRole('cell', {name: expectedStatus});
     await progressBarHandler(this.page);
     await expect(statusLocator).toBeVisible({ timeout: 5000 });
+
   }
 }

@@ -39,7 +39,7 @@ export default defineConfig({
         matchKeywords: true,
       }),
       fullyParallel: true,
-      use: { ...devices["Desktop Chrome"], channel: "chromium" },
+      use: { ...devices["Desktop Chrome"], channel: "chromium" ,headless: true,},
     },
     {
       ...defineBddProject({
@@ -53,6 +53,7 @@ export default defineConfig({
       fullyParallel: true,
       use: {
         ...devices["Desktop Chrome"],
+        headless: true,
         channel: "chromium",
         storageState: ".auth/state.json",
       },
@@ -69,6 +70,7 @@ export default defineConfig({
       fullyParallel: true,
       use: {
         ...devices["Desktop Chrome"],
+        headless: true,
         channel: "chromium",
         storageState: ".auth/state.json",
       },

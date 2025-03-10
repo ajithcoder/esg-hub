@@ -19,6 +19,7 @@ The test artifacts of the functional testing performed , such as Test case docum
 - **utils/**: Contains helper functions that are generally used in the Framework
 - **.env/**: Contains login credentials (added to .gitignore)
 - **playwright.config.ts**: Contains playwright configurations as well as bdd specific configurations
+- **Test Artifacts**: Contains test case documentation, defect reports and defect tracker.
 
 ## Key Features:
 

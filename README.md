@@ -75,5 +75,10 @@ Using playwright-bdd brings several benefits over Playwright’s native test run
 * Improved Collaboration – Enables QA, developers, and business teams to work together on test cases.
 * Clear Reporting – Integrates with Cucumber-style reports for structured and human-readable test results.
 
+## Test Execution Notes
+
+* Tests are running good on local.
+* The implementation on Github actions requires little more calibration on page load handling.
+
 
 

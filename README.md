@@ -65,5 +65,20 @@ Other commands:
 
 After running the tests, you can view the test report by opening playwright-report/index.html in your browser. If the port forwarding is enabled, the reports can be configured to open automatically after test run.
 
+## Why playwright-bdd package ?
+
+Using playwright-bdd brings several benefits over Playwright’s native test runner, especially for teams following BDD:
+
+* Readable & Business-Friendly – Tests are written in Gherkin (.feature files), making them understandable for non-technical stakeholders.
+* Better Test Organization – Feature files serve as test documentation, improving test traceability.
+* Reusable Test Steps – Common actions (e.g., login, navigation) can be shared across multiple scenarios, reducing duplication.
+* Improved Collaboration – Enables QA, developers, and business teams to work together on test cases.
+* Clear Reporting – Integrates with Cucumber-style reports for structured and human-readable test results.
+
+## Test Execution Notes
+
+* Tests are running good on local.
+* The implementation on Github actions requires little more calibration on page load handling.
+
 
 

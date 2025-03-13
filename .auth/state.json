@@ -1,0 +1,18 @@
+{
+  "cookies": [],
+  "origins": [
+    {
+      "origin": "https://ajith.verso.de",
+      "localStorage": [
+        {
+          "name": "@@STATE",
+          "value": "{\"router\":{\"trigger\":\"none\",\"state\":{\"url\":\"/dashboard/tasks-all\",\"entityType\":\"dashboard\",\"entityView\":[\"tasks-all\"],\"params\":{},\"queryParams\":{}},\"navigationId\":3},\"qa\":{\"qaGroups\":[],\"qaPublic\":{\"password\":\"\",\"published\":false}},\"form\":{\"canSubmit\":false,\"isSubmitted\":false},\"auth\":{\"loggedIn\":false,\"token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDE4NzMwODksImV4cCI6MTc0MTk1OTQ4OSwicm9sZXMiOlsiUk9MRV9BRE1JTklTVFJBVE9SIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoibWFpbnRlbmFuY2UifQ.NeduSptU3-2c4dz0xdrXwWJpTEncS7bKuu9kbVcPhq4F0aDl8Q46TTW1KLxl7y0s-bt-PsSOflqP24v3DNqkWetf69p8askMKDHMN9bJ3Er52JfQkINnnEc_YsRcVRHKV02HAI_XZmYPuNlCrfN5YPzR-L5d3OAswSi_f1zp8Y8YiHef9UIMZbdGQkkRJTfSzWKGmUmmpITDdZIJJnQefTPLeuVOfM4aeIqrx8p4ScWhfcRp6Hu5symLD7Da-FVJJF9T2ZylUrKKmgqTTMqirNJV1xSplhmsP24nSn-O24BjHx4SKCI2rz8YxsbToDFN0CBPZiLLfgGlbcs0VnlN5A\",\"adminInfo\":{\"companyName\":\"ajith\",\"logoUrl\":\"https://media.verso.fi/image/2024/10/28/verso-Logo-print-forest-verso-logo-horiz_verso-logo_horiz_RGB_white.png.png\",\"iconUrl\":null,\"minPassLength\":6,\"maxPassLength\":255},\"user\":null},\"datapoints\":{\"dataPointsByAreas\":[],\"overviewList\":[],\"selectedAreaTile\":\"General\",\"haveAnyChanges\":false,\"selectedDataPoints\":[]},\"topics\":{\"overviewList\":null,\"archivedOverviewList\":null,\"changesAvailable\":false},\"contentLanguage\":{\"currentLanguage\":\"en\",\"interfaceLanguage\":null},\"metrics\":{\"unsavedMetrics\":{\"id\":null,\"metricTopic\":{\"id\":null,\"title\":\"\",\"topicId\":null},\"topic\":{\"id\":null,\"title\":\"\"},\"locked\":false,\"title\":\"\",\"alarm\":0,\"files\":[],\"data\":null,\"footnote\":\"\",\"description\":null,\"excelUrl\":null},\"savedMetrics\":{\"id\":null,\"metricTopic\":{\"id\":null,\"title\":\"\",\"topicId\":null},\"topic\":{\"id\":null,\"title\":\"\"},\"locked\":false,\"title\":\"\",\"alarm\":0,\"files\":[],\"data\":null,\"footnote\":\"\",\"description\":null,\"excelUrl\":null},\"overviewList\":[],\"haveAnyChanges\":false,\"customFontIsLoaded\":false,\"topicSelectedList\":null,\"topicList\":[],\"selectedMetricId\":null,\"metricGraphs\":[],\"metricOverviewListPageIndex\":{\"active\":1,\"archive\":1},\"nextUrl\":null}}"
+        },
+        {
+          "name": "verso-admin-token",
+          "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NDE4NzMwODksImV4cCI6MTc0MTk1OTQ4OSwicm9sZXMiOlsiUk9MRV9BRE1JTklTVFJBVE9SIiwiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoibWFpbnRlbmFuY2UifQ.NeduSptU3-2c4dz0xdrXwWJpTEncS7bKuu9kbVcPhq4F0aDl8Q46TTW1KLxl7y0s-bt-PsSOflqP24v3DNqkWetf69p8askMKDHMN9bJ3Er52JfQkINnnEc_YsRcVRHKV02HAI_XZmYPuNlCrfN5YPzR-L5d3OAswSi_f1zp8Y8YiHef9UIMZbdGQkkRJTfSzWKGmUmmpITDdZIJJnQefTPLeuVOfM4aeIqrx8p4ScWhfcRp6Hu5symLD7Da-FVJJF9T2ZylUrKKmgqTTMqirNJV1xSplhmsP24nSn-O24BjHx4SKCI2rz8YxsbToDFN0CBPZiLLfgGlbcs0VnlN5A"
+        }
+      ]
+    }
+  ]
+}

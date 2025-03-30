@@ -24,9 +24,9 @@ Feature: End-to-End Task Creation Flow
 
     Examples:
       | Title      | Description                  | Assignees         | Deadline     | Status      |
-      | Alpha Task | Complete all the alpha tasks | Verso Maintenance | 15 MÄRZ 2025 | Open        |
-      | Beta Task  | Complete all the beta tasks  | Verso Maintenance | 15 FEB. 2026 | In Progress |
-      | Gamma Task | Complete all the gamma tasks | Verso Maintenance | 25 DEZ. 2025 | Done        |
+      | Alpha Task | Complete all the alpha tasks | Maintenance | 15 MÄRZ 2025 | Open        |
+      | Beta Task  | Complete all the beta tasks  | Maintenance | 15 FEB. 2026 | In Progress |
+      | Gamma Task | Complete all the gamma tasks | Maintenance | 25 DEZ. 2025 | Done        |
 
   Scenario: Verify newly created Task in Dashboard    # this Scenario intends to cover the navigation from Tasks tab to dashboard too.
     Given the user is on the Test Topic details page
@@ -34,5 +34,5 @@ Feature: End-to-End Task Creation Flow
     And selects the "Task" tab
     Then a task "Alpha Task" exists in the Task tab
     When the user selects the Dashboard module from the navigation bar
-    Then the user finds "Alpha Task" on the tab "My VERSO Tasks"
+    Then the user finds "Alpha Task" on the tab "My Tasks"
     And the user finds "Alpha Task" on the tab "Tasks created by me"

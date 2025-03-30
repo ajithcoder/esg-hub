@@ -2,7 +2,7 @@
 
 -------------------------------------------------------------------------------------------
 
-## Verso-ESG-HUB
+## ESG-HUB
 
 This repository contains test autoation scripts for ESG-HUB application functionality Topics Tasks using Playwright Typescript and BDD (Behavior-Driven Development) approach in Page Object Model design pattern. 
 
